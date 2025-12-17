@@ -1,0 +1,59 @@
+<%- include("./layout/header")%>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <%-include("./layout/sidebar")%>
+        <!-- End of Sidebar -->
+        
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <%-include("./layout/navbar")%>
+            <!-- End of Main Content -->
+            
+            <!-- <div class="container-fluid"> -->
+                <div class="container-fluid">
+                    <div class="register">
+                        <div class="card register-card">
+                            <div class="card-body register-card-body">
+
+                                <h1 class="register-text text-center">Register Page</h1>
+                                <form action="/register" method="POST" enctype="multipart/form-data">
+                                    <div class="mb-3">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="name">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <input type="text" class="form-control" name="phone">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Password</label>
+                                        <input type="text" class="form-control" name="password">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Profile Pic</label>
+                                        <input type="file" class="form-control" name="image">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary rounded-pill w-100">Register</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+            <!-- </div> -->
+
+     
+          </div>
+
+
+   
+            
+
+<%-include("./layout/footer")%>

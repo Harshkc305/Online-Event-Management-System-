@@ -1,0 +1,26 @@
+.carousel-inner img {
+    transition: transform 0.4s ease;
+}
+
+.carousel-inner img:hover {
+    transform: scale(1.05);
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.card-header {
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+.invisible-btn {
+    background: transparent !important;  /* Make button background transparent */
+    border: none !important;             /* Remove border */
+    width: 100%;                         /* Optional: make clickable area wider */
+    height: 100%;                        /* Optional: full height of carousel */
+}
+
+.invisible-btn .carousel-control-prev-icon,
+.invisible-btn .carousel-control-next-icon {
+    display: none;                        /* Hide default arrow icons */
+}

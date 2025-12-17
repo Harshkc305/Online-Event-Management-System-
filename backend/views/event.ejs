@@ -1,0 +1,76 @@
+<%- include("./layout/header") %>
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <%- include("./layout/sidebar") %>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Navbar -->
+        <%- include("./layout/navbar") %>
+        <!-- End of Navbar -->
+
+        <!-- Page Content -->
+        <div class="container-fluid">
+            <div class="productp">
+
+                <div class="card cardp">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="mb-0" style="font-family: 'Comfortaa';">➕ Add Event</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/createEvent" method="post" enctype="multipart/form-data">
+                            
+                            <!-- Name -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Event Name</label>
+                                <input type="text" name="name" placeholder="Enter product name" class="form-control rounded-pill shadow-sm" required />
+                            </div>
+                            
+                            <!-- Category -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Category</label>
+                                <input type="text" name="category" placeholder="Enter product category" class="form-control rounded-pill shadow-sm" required />
+                            </div>
+                            
+                            <!-- Description -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Description</label>
+                                <textarea name="description" placeholder="Enter product description" class="form-control rounded shadow-sm" rows="3" required></textarea>
+                            </div>
+                            
+                           
+                            
+                            
+                            <!-- Price & Stock -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Price (₹)</label>
+                                    <input type="number" name="price" placeholder="Enter product price" class="form-control rounded-pill shadow-sm" required />
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Images -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Event Images</label>
+                                <input type="file" name="image" class="form-control shadow-sm" multiple required />
+                                <small class="text-muted">You can upload multiple images.</small>
+                            </div>
+                            
+                            <!-- Submit -->
+                            <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                                Submit Event
+                            </button>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Content -->
+
+        <%- include("./layout/footer") %>
+    </div>
+</div>
