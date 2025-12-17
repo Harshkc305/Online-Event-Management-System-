@@ -1,4 +1,7 @@
 const User=require("../models/user")
+
+const Event=require("../models/EventModel")
+
 const bcrypt=require("bcryptjs");
 const jwt=require("jsonwebtoken");
 const cloudinary=require("../config/cloudinaryConfig")
@@ -331,15 +334,22 @@ async Dashboard(req, res) {
     }
 }
 
-// async Logout(req, res) {
-//     try{
-//         res.clearCookie("userToken");
-//         return res.redirect("/login-page");
+async getAllEvent(req, res) {
+   try{
+        const event= await Event.find()
+        return res.status(200).json({
+            message:"successful getEvent data ",
+            data:event,
+            user:req.user
+        })
+        
 
-//     }catch(error){
-//         console.log("error in user logout",error);
-//     }
-// }
+    }catch(error){
+        console.log("error in getting Event",error);
+    }
 
 }
+}
+
+
 module.exports=new apiAuthController();
