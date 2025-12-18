@@ -2,11 +2,15 @@ require("dotenv").config();
 
 const express=require("express");
 const dbcon=require("./app/config/dbcon")
+const cors=require("cors");
 const cookieParser=require("cookie-parser");
 const app=express();
 const Path=require("path");
 
 dbcon()
+
+// cors middlewere
+app.use(cors())
 
 app.use(cookieParser());
 
