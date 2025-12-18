@@ -3,6 +3,7 @@ require("dotenv").config();
 const express=require("express");
 const dbcon=require("./app/config/dbcon")
 const cors=require("cors");
+
 const cookieParser=require("cookie-parser");
 const app=express();
 const Path=require("path");
@@ -10,7 +11,11 @@ const Path=require("path");
 dbcon()
 
 // cors middlewere
-app.use(cors())
+app.use(cors({
+  origin: process.env.FRONTEND_HOST || 'http://localhost:3001',
+  credentials: true
+}));
+// app.use(helmet());
 
 app.use(cookieParser());
 
@@ -19,6 +24,9 @@ app.set("view engine","ejs");
 app.set("views","views");
 
 // middlewares
+
+// app.use(express.json({ limit: '10mb' }));
+// app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
 

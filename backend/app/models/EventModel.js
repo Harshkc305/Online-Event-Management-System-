@@ -15,8 +15,31 @@ const eventSchema=new mongoose.Schema({
     },
     
     price:{
-        type:String,
+        type:Number,
         required:true
+    },
+    totalTickets: { 
+        type: Number, 
+        required: true, 
+        default: 0 
+    },
+    availableTickets: { 
+        type: Number, 
+        required: true, 
+        default: 0 
+
+    },
+    date: { type: Date, 
+        required: true 
+    },
+    location: { 
+        type: String, 
+        required: true 
+    },
+    status: { 
+        type: String, 
+        enum: ['upcoming', 'ongoing', 'completed'], 
+        default: 'upcoming' 
     },
     
     image:{

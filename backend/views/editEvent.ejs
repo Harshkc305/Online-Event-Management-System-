@@ -1,78 +1,123 @@
-<%- include("./layout/header")%>
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+<%- include("./layout/header") %>
 
-        <!-- Sidebar -->
-        <%-include("./layout/sidebar")%>
-        <!-- End of Sidebar -->
-        
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-            <!-- Main Content -->
-            <%-include("./layout/navbar")%>
-            <!-- End of Main Content -->
-            
-            <!-- <div class="container-fluid"> -->
-                <div class="container  ">
-                <h1>Edit Event</h1>
-                  <form action="/updateEvent/<%=data.id%>" method="post" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label>Name</label>
-                            <input type="text" name="name" placeholder="Enter product name" class="form-control" value="<%=data.name%>"/>
+<div id="wrapper">
+    <%- include("./layout/sidebar") %>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <%- include("./layout/navbar") %>
+
+        <div class="container my-5">
+
+            <!-- Page Title -->
+            <div class="mb-4">
+                <h2 class="fw-bold text-dark">Edit Event</h2>
+                <p class="text-muted">Update event details carefully</p>
+            </div>
+
+            <!-- Card -->
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body p-4">
+
+                    <form action="/updateEvent/<%= data._id %>" method="post" enctype="multipart/form-data">
+
+                        <div class="row g-4">
+
+                            <!-- Name -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Event Name</label>
+                                <input type="text" name="name" class="form-control"
+                                    value="<%= data.name %>" required>
+                            </div>
+
+                            <!-- Category -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Category</label>
+                                <input type="text" name="category" class="form-control"
+                                    value="<%= data.category %>" required>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Description</label>
+                                <textarea name="description" rows="3" class="form-control" required><%= data.description %></textarea>
+                            </div>
+
+                            <!-- Price -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Price (₹)</label>
+                                <input type="number" name="price" class="form-control"
+                                    value="<%= data.price %>" required>
+                            </div>
+
+                            <!-- Date -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Event Date</label>
+                                <input type="date" name="date" class="form-control"
+                                    value="<%= data.date ? new Date(data.date).toISOString().split('T')[0] : '' %>" required>
+                            </div>
+
+                            <!-- Location -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Location</label>
+                                <input type="text" name="location" class="form-control"
+                                    value="<%= data.location %>" required>
+                            </div>
+
+                            <!-- Tickets -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Total Tickets</label>
+                                <input type="number" name="totalTickets" class="form-control"
+                                    value="<%= data.totalTickets %>" required>
+                            </div>
+
+                            <!-- <div class="col-md-3">
+                                <label class="form-label fw-semibold">Available Tickets</label>
+                                <input type="number" name="availableTickets" class="form-control"
+                                    value="<%= data.availableTickets %>" required>
+                            </div> -->
+
+                            <!-- Existing Images -->
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Current Images</label>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <% if (Array.isArray(data.image)) { %>
+                                        <% data.image.forEach(img => { %>
+                                            <img src="<%= img %>" height="90"
+                                                class="rounded shadow-sm border">
+                                        <% }) %>
+                                    <% } %>
+                                </div>
+                            </div>
+
+                            <!-- Upload New Images -->
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">
+                                    Upload New Images <small class="text-muted">(optional)</small>
+                                </label>
+                                <input type="file" name="image" class="form-control" multiple>
+                            </div>
+
                         </div>
-                        
-                        <div class="mb-3">
-                            <label>category</label>
-                            <input type="text" name="category" placeholder="Enter product Category" class="form-control" value="<%=data.category%>"/>
+
+                        <!-- Buttons -->
+                        <div class="mt-4 d-flex gap-3">
+                            <button type="submit" class="btn gradient-btn px-4 shadow-sm">
+                                 Update Event
+                            </button>
+
+                            <a href="/getAllEvent" class="btn btn-light px-4 ml-3">
+                                ← Cancel
+                            </a>
+                            
                         </div>
 
-                        <div class="mb-3">
-                            <label>Description</label>
-                            <input type="text" name="description" placeholder="Enter product Description" class="form-control" value="<%=data.description%>"/>
-                        </div>
-                        
-                        
+                    </form>
 
-                        <div class="mb-3">
-                            <label>Price</label>
-                            <input type="text" name="price" placeholder="Enter product Price" class="form-control" value="<%=data.price%>"/>
-                        </div>
+                </div>
+            </div>
 
-                        
+        </div>
 
-                        <td>
-                            <%if(Array.isArray(data.image)){%>
-                                <%data.image.forEach(img=>{%>
-                                    <img src="<%=img%>" height="100" style="margin:3px; border-radius: 5px;" />
-                               <% })%>
-                            <%}%>
-                        </td>
-
-
-                        <div class="form-group">
-                            <label>Image</label>
-                            <input type="file" class="form-control" name="image" multiple required>
-                        </div>
-
-
-                         <button type="submit" class="btn btn-primary">Submit</button>
-                   </form>
-                    
-            <!-- </div> -->
-
-     
-          </div>
-          <!-- Custom fonts for this template-->
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
-
-            <!-- Footer -->
-            
-            
-
-<%-include("./layout/footer")%>
+        <%- include("./layout/footer") %>
+    </div>
+</div>

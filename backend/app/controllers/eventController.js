@@ -23,14 +23,23 @@ class productController{
 
     async createEvent(req,res){
         try{
-            const{name,category, description,price}=req.body;
+            const{name,category, description,price,totalTickets, date, location}=req.body;
+
+            const total = Number(totalTickets);
 
             const event=new Event({
                 name,
                 category,
                 description,
+                price: parseFloat(price), // Convert to number
+                totalTickets: total,
+                availableTickets: total,
+                date: new Date(date),
+                location,
+                status: 'upcoming' // Default status
+
                 
-                price,
+            
                 
                 
             })
@@ -120,10 +129,13 @@ class productController{
     // all product----------------------------------------
     async getAllEvent(req,res){
         try{
-            const product= await Event.find()
+            const events= await Event.find()
+
+            // const events = await Event.find({ availableTickets: { $gt: 0 } }) // Only show events with tickets
+            // .sort({ date: 1 });
             res.render("eventlist",{
                 title:"Event List Page",
-                data:product,
+                data:events,
                 user:req.user
             })
 
@@ -174,13 +186,19 @@ class productController{
     async updateEvent(req,res){
         try{
             const id=req.params.id;
-            const{name,category, description,price}=req.body;
+            const{name,category, description,price,totalTickets, date, location}=req.body;
+            const total = Number(totalTickets);
+            
             const updatedData={
                 name,
                 category,
                 description,
-                
-                price,
+                price: parseFloat(price), // Convert to number
+                totalTickets: total,
+                availableTickets: total,
+                date: new Date(date),
+                location
+               
                
             }
             if(req.files && req.files.length>0){

@@ -43,14 +43,46 @@
                            
                             
                             
-                            <!-- Price & Stock -->
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label class="form-label fw-semibold">Price (₹)</label>
-                                    <input type="number" name="price" placeholder="Enter product price" class="form-control rounded-pill shadow-sm" required />
+                            <!-- Price & Tickets -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-semibold">
+                                            Ticket Price (₹)
+                                        </label>
+                                        <input type="number" name="price"
+                                            class="form-control rounded-pill shadow-sm"
+                                            placeholder="0" required>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-semibold">
+                                            Total Tickets
+                                        </label>
+                                        <input type="number" name="totalTickets"
+                                            class="form-control rounded-pill shadow-sm"
+                                            placeholder="0" required>
+                                    </div>
                                 </div>
-                                
-                            </div>
+
+                                <!-- Date & Location -->
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-semibold">
+                                            Event Date
+                                        </label>
+                                        <input type="date" name="date"
+                                            class="form-control rounded-pill shadow-sm" required>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-semibold">
+                                            Location
+                                        </label>
+                                        <input type="text" name="location"
+                                            class="form-control rounded-pill shadow-sm"
+                                            placeholder="Location" required>
+                                    </div>
+                                </div>
                             
                             <!-- Images -->
                             <div class="mb-4">
@@ -60,9 +92,14 @@
                             </div>
                             
                             <!-- Submit -->
-                            <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                            <!-- <button type="submit" class="btn btn-primary rounded-pill px-4 shadow-sm">
+                                Submit Event
+                            </button> -->
+
+                            <button type="submit" class="btn gradient-btn rounded-pill px-4 shadow-sm">
                                 Submit Event
                             </button>
+
                             
                         </form>
                     </div>

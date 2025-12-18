@@ -15,8 +15,12 @@
         <div class="container-fluid mt-4">
 
             <div class="card shadow-sm">
-                <div class="card-header bg-secondary text-white">
+                <div class="card-header bg-secondary text-white d-flex justify-content-between ">
                     <h5 class="mb-0" style="font-family: 'Comfortaa';">🛒 All Event</h5>
+                    <span class="badge bg-light text-dark rounded-pill d-flex align-items-center justify-content-center">
+    Total: <%= data.length %>
+</span>
+
                 </div>
 
                 <div class="card-body table-responsive">
@@ -24,14 +28,17 @@
                     <% if (data.length > 0) { %>
                     <table class="table table-hover align-middle">
                         <thead class="table-light">
-                            <tr>
+                           <tr>
                                 <th>#</th>
                                 <th>Images</th>
-                                <th>Name</th>
+                                <th>Event</th>
                                 <th>Category</th>
                                 <th>Price</th>
-                                
-                                <th class="text-center">Actions</th>
+                                <th>Tickets</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
 
@@ -42,36 +49,36 @@
 
                                 
                              
-<!-- IMAGE SLIDER -->
-<td style="width:200px;">
-  <div id="productCarousel-<%= item._id %>" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <% if (Array.isArray(item.image) && item.image.length > 0) { %>
-        <% item.image.forEach((img, i) => { %>
-          <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-            <img src="<%= img %>" class="d-block w-100" 
-                 style="max-height:150px; object-fit:cover; border-radius:5px;">
-          </div>
-        <% }) %>
-      <% } else { %>
-        <div class="carousel-item active">
-          <img src="https://via.placeholder.com/150" class="d-block w-100" 
-               style="max-height:150px; object-fit:cover; border-radius:5px;">
-        </div>
-      <% } %>
-    </div>
+                        <!-- IMAGE SLIDER -->
+                        <td style="width:200px;">
+                        <div id="productCarousel-<%= item._id %>" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                            <% if (Array.isArray(item.image) && item.image.length > 0) { %>
+                                <% item.image.forEach((img, i) => { %>
+                                <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                                    <img src="<%= img %>" class="d-block w-100" 
+                                        style="max-height:150px; object-fit:cover; border-radius:5px;">
+                                </div>
+                                <% }) %>
+                            <% } else { %>
+                                <div class="carousel-item active">
+                                <img src="https://via.placeholder.com/150" class="d-block w-100" 
+                                    style="max-height:150px; object-fit:cover; border-radius:5px;">
+                                </div>
+                            <% } %>
+                            </div>
 
-    <!-- Invisible Controls -->
-    <button class="carousel-control-prev invisible-btn" type="button" 
-            data-bs-target="#productCarousel-<%= item._id %>" data-bs-slide="prev">
-      <span class="visually-hidden"></span>
-    </button>
-    <button class="carousel-control-next invisible-btn" type="button" 
-            data-bs-target="#productCarousel-<%= item._id %>" data-bs-slide="next">
-      <span class="visually-hidden"></span>
-    </button>
-  </div>
-</td>
+                            <!-- Invisible Controls -->
+                            <button class="carousel-control-prev invisible-btn" type="button" 
+                                    data-bs-target="#productCarousel-<%= item._id %>" data-bs-slide="prev">
+                            <span class="visually-hidden"></span>
+                            </button>
+                            <button class="carousel-control-next invisible-btn" type="button" 
+                                    data-bs-target="#productCarousel-<%= item._id %>" data-bs-slide="next">
+                            <span class="visually-hidden"></span>
+                            </button>
+                        </div>
+                        </td>
 
 
 
@@ -87,6 +94,24 @@
                                 <td><span class="badge bg-light text-dark rounded-pill"><%= item.category %></span></td>
 
                                 <td>₹ <%= item.price %></td>
+                                <td>
+                                    <%= item.availableTickets %> /
+                                    <%= item.totalTickets %>
+                                </td>
+
+                                <td>
+                                    <% if (item.availableTickets > 0) { %>
+                                        <span class="badge bg-light text-dark rounded-pill">Active</span>
+                                    <% } else { %>
+                                        <span class="badge bg-light text-dark rounded-pill">Sold Out</span>
+                                    <% } %>
+                                </td>
+
+                                <td>
+                                    <%= new Date(item.date).toLocaleDateString("en-IN") %>
+                                </td>
+
+                                <td><%= item.location %></td>
 
                                 
 
