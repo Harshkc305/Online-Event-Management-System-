@@ -91,7 +91,7 @@
                                     <small class="text-muted"><%= item.description.slice(0,40) %>...</small>
                                 </td>
 
-                                <td><span class="badge bg-light text-dark rounded-pill"><%= item.category %></span></td>
+                                <td><span class="badge bg-light text-dark rounded-pill"><%= item.category ? item.category.name : "N/A" %></span></td>
 
                                 <td>₹ <%= item.price %></td>
                                 <td>

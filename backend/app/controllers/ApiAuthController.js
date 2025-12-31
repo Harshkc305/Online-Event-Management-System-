@@ -2,6 +2,7 @@ const User=require("../models/user")
 
 const Event=require("../models/EventModel")
 
+
 const bcrypt=require("bcryptjs");
 const jwt=require("jsonwebtoken");
 const cloudinary=require("../config/cloudinaryConfig")
@@ -133,11 +134,7 @@ async verifyEmail(req,res){
         })
 
 
-        
-
-
-
-        
+      
 
     }catch(error){
        console.log(error.message);

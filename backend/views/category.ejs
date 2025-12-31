@@ -1,0 +1,47 @@
+<%- include("./layout/header") %>
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <%- include("./layout/sidebar") %>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Navbar -->
+        <%- include("./layout/navbar") %>
+        <!-- End of Navbar -->
+
+        <!-- Page Content -->
+        <div class="container-fluid">
+            <div class="Category-page">
+
+                <div class="card cardcategory">
+                    <div class="card-header bg-secondary text-white">
+                        <h3 class="mb-0" style="font-family: 'Comfortaa';">➕ Add Category</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/createcategory" method="post">
+                            
+                            <!-- Name -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Category Name</label>
+                                <input type="text" name="name" placeholder="Enter Category name" class="form-control rounded-pill shadow-sm" required />
+                            </div>
+                            
+                           
+
+                            <button type="submit" class="btn gradient-btn rounded-pill px-4 shadow-sm">
+                                Submit Category
+                            </button>
+
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Content -->
+
+        <%- include("./layout/footer") %>
+    </div>
+</div>

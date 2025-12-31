@@ -9,8 +9,9 @@ const router=express.Router();
 router.get("/event-page",AuthCheckEjs,eventController.eventPage)
 // router.get("/edit-page",eventController.editPage)
 
-
-
+// category page route
+router.get("/category-page",AuthCheckEjs,AdminAuthCheck,eventController.categoryPage)
+router.post("/createcategory",AuthCheckEjs,AdminAuthCheck,eventController.addcategory);
 
 
 router.post("/createEvent",AuthCheckEjs,AdminAuthCheck,productImageUpload.array("image",5),eventController.createEvent);

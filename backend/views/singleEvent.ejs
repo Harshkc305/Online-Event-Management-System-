@@ -46,15 +46,15 @@
                             <div class="col-md-6 ps-md-5 mt-4 mt-md-0">
                                 
                                 <div class="d-flex align-items-center mb-3 badge-wrapper">
-    <span class="badge badge-category me-3">
-        <%= data.category %>
-    </span>
+                                    <span class="badge badge-category me-3">
+                                        <%= data.category? data.category.name:"N/A" %>
+                                    </span>
 
-    <span class="badge badge-status 
-        <%= data.availableTickets === 0 ? 'sold' : 'available' %>">
-        <%= data.availableTickets === 0 ? 'Sold Out' : 'Available' %>
-    </span>
-</div>
+                                    <span class="badge badge-status 
+                                        <%= data.availableTickets === 0 ? 'sold' : 'available' %>">
+                                        <%= data.availableTickets === 0 ? 'Sold Out' : 'Available' %>
+                                    </span>
+                                </div>
 
                                 
                                 <h2 class="fw-bold mt-2"><%= data.name %></h2>

@@ -32,8 +32,14 @@
                             <!-- Category -->
                             <div class="col-md-6">
                                 <label class="form-label fw-semibold">Category</label>
-                                <input type="text" name="category" class="form-control"
-                                    value="<%= data.category %>" required>
+                                <select name="category" class="form-control" required>
+                                    <option value="">-- Select Category --</option>
+                                    <% categories.forEach(cat => { %>
+                                        <option value="<%= cat._id %>">
+                                            <%= cat.name %>
+                                        </option>
+                                    <% }) %>
+                                </select>
                             </div>
 
                             <!-- Description -->

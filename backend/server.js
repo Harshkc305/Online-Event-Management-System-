@@ -53,6 +53,9 @@ app.use(ejsAuthRoute)
 const ApiAuthController=require("./app/router/apiAuthRoute")
 app.use("/api",ApiAuthController)
 
+const ApiEventController=require("./app/router/apiEventRoute")
+app.use("/api",ApiEventController)
+
 const PORT=process.env.PORT || 1226;
 app.listen(PORT,()=>{
     console.log(`aerver is running on port @http://localhost:${PORT}`)

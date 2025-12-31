@@ -1,24 +1,57 @@
 const Event=require("../models/EventModel")
 const cloudinary=require("../config/cloudinaryConfig")
+const Category=require("../models/categoryModel")
 const fs=require("fs");
 const { rejects } = require("assert");
 const { resolve } = require("path");
 
 
-class productController{
+class eventController{
 
     // product page
     async eventPage(req,res){
         try{
             // res.send("Product created successfully");
+            const categories= await Category.find()
             res.render("event",{
                 title:"Event Page",
-                user:req.user
+                user:req.user,
+                categories
             })
         }catch(err){
             console.log("Error in creating product", err);
         }
     }
+    // ----------------------------------------------
+    async categoryPage(req,res){
+        try{
+            const categories= await Category.find({isDeleted:false})
+            res.render("category",{
+                title:"Category Page",
+                user:req.user,
+                categories
+            })
+        }catch(error){
+            console.log("error in getting category page",error);
+        }
+    }
+    // ------------------------------------------------
+    async addcategory(req,res){
+        try{
+            console.log(req.body); // debug once
+            const {name}=req.body;
+              if (!name) {
+                return res.redirect("/category-page");
+            }
+            const category=new Category({name})
+            await category.save();
+            res.redirect("/event-page");
+            
+        }catch(error){
+            console.log("error in add category",error);
+        }
+    }
+    
     // ------------------------------------------------
 
     async createEvent(req,res){
@@ -129,14 +162,16 @@ class productController{
     // all product----------------------------------------
     async getAllEvent(req,res){
         try{
-            const events= await Event.find()
+            const events= await Event.find().populate("category","name")
+            // const categories= await Category.findById()
 
             // const events = await Event.find({ availableTickets: { $gt: 0 } }) // Only show events with tickets
             // .sort({ date: 1 });
             res.render("eventlist",{
                 title:"Event List Page",
                 data:events,
-                user:req.user
+                user:req.user,
+                // categories
             })
 
         }catch(error){
@@ -147,7 +182,8 @@ class productController{
     async singleEvent(req,res){
         try{
             const id=req.params.id;
-            const event= await Event.findById(id)
+            const event= await Event.findById(id).populate("category","name")
+            
             res.render("singleEvent",{
                 title:"Single Event Page",
                 data:event,
@@ -173,9 +209,11 @@ class productController{
         try{
             const id=req.params.id;
             const event= await Event.findById(id)
+            const categories= await Category.find()
             res.render("editEvent",{
                 title:"Edit Event Page",
                 data:event,
+                categories,
                 user:req.user
             })
         }catch(error){
@@ -261,4 +299,4 @@ class productController{
 
 
 
-module.exports= new productController()
+module.exports= new eventController()
