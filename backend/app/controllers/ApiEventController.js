@@ -1,9 +1,7 @@
 const Event=require("../models/EventModel")
-const cloudinary=require("../config/cloudinaryConfig")
+
 const Category=require("../models/categoryModel")
-const fs=require("fs");
-const { rejects } = require("assert");
-const { resolve } = require("path");
+
 
 
 class apieventController{
