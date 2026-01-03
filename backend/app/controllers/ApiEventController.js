@@ -1,6 +1,6 @@
 const Event=require("../models/EventModel")
 
-const Category=require("../models/categoryModel")
+// const Category=require("../models/categoryModel")
 
 
 
