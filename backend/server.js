@@ -6,7 +6,7 @@ const cors=require("cors");
 
 const cookieParser=require("cookie-parser");
 const app=express();
-const Path=require("path");
+const path=require("path");
 
 dbcon()
 
@@ -34,9 +34,10 @@ app.use(express.json())
 app.use(express.static("public"));
 
 // static folder
-app.use("/uploads",express.static(Path.join(__dirname,"uploads")));
+app.use("/uploads",express.static(path.join(__dirname,"uploads")));
 
-app.use(express.static(Path.join(__dirname, "Public")));
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use("/uploads",express.static("uploads"));
 
 // api
