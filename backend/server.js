@@ -36,7 +36,7 @@ app.use(express.static("public"));
 // static folder
 app.use("/uploads",express.static(Path.join(__dirname,"uploads")));
 
-app.use(express.static(Path.join(__dirname, "public")));
+app.use(express.static(Path.join(__dirname, "Public")));
 app.use("/uploads",express.static("uploads"));
 
 // api
